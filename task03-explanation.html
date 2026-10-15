@@ -1,17 +1,304 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Task 3 explanation</title>
-  <link rel="stylesheet" href="assets/student.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Traffic Accidents in Barcelona — Task 1, Part 4</title>
+<style>
+  :root{
+    --ink:#1f2933; --muted:#52606d; --line:#cbd2d9; --bg:#f5f7fa; --card:#ffffff;
+    --accent:#1f4e79; --accent-soft:#dbe7f3;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+  header{background:var(--accent);color:#fff;padding:32px 24px}
+  header .wrap{max-width:1050px;margin:auto}
+  header h1{margin:0 0 6px;font-size:1.9rem}
+  header p{margin:2px 0;opacity:.92}
+  main{max-width:1050px;margin:auto;padding:24px}
+  section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 26px;margin-bottom:24px}
+  h2{margin-top:0;color:var(--accent);border-bottom:2px solid var(--accent-soft);padding-bottom:6px}
+  h3{color:var(--accent);margin-bottom:6px}
+  .note{background:var(--accent-soft);border-left:4px solid var(--accent);padding:10px 14px;border-radius:4px;font-size:.95rem}
+  .goal{font-weight:600}
+  table{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:.92rem}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#eef2f6}
+  ul{margin:6px 0 6px 20px}
+  code{background:#eef2f6;padding:1px 5px;border-radius:3px;font-size:.9em}
+  .swatches{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+  .sw{display:flex;align-items:center;gap:8px;font-size:.88rem}
+  .sw i{display:inline-block;width:26px;height:18px;border-radius:3px;border:1px solid #9aa5b1}
+
+  /* ---------- LOW-FI WIREFRAME ---------- */
+  .wf{background:#e4e7eb;border:2px dashed #7b8794;border-radius:10px;padding:16px}
+  .wf-title{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1.5px solid #7b8794;padding:10px 14px;border-radius:6px;margin-bottom:12px}
+  .wf-title b{font-size:1.05rem}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .filter{border:1.5px solid #7b8794;background:#f5f7fa;padding:3px 10px;border-radius:14px;font-size:.78rem;color:#3e4c59}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+  .kpi{background:#fff;border:1.5px solid #7b8794;border-radius:6px;padding:8px 10px;text-align:center;font-size:.8rem;color:#3e4c59}
+  .kpi strong{display:block;font-size:1.1rem;color:#9aa5b1}
+  .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:12px}
+  .panel{background:#fff;border:1.5px solid #7b8794;border-radius:6px;padding:10px 12px}
+  .panel h4{margin:0 0 2px;font-size:.88rem;color:#1f2933}
+  .panel small{display:block;color:#616e7c;font-size:.74rem;margin-bottom:8px}
+  .span2{grid-column:1 / -1}
+  .heat{display:grid;grid-template-columns:34px repeat(24,1fr);gap:2px;font-size:.6rem;color:#616e7c;align-items:center}
+  .heat .c{height:16px;border-radius:2px}
+  .heat .lab{text-align:right;padding-right:4px}
+  .hlab{text-align:center}
+  .legend-bar{height:8px;width:140px;background:linear-gradient(90deg,#e1e5ea,#3e4c59);border-radius:3px;display:inline-block;vertical-align:middle;margin:0 6px}
+  .legend-row{font-size:.7rem;color:#616e7c;margin-top:6px}
+  .bars .row{display:grid;grid-template-columns:90px 1fr;gap:8px;align-items:center;margin:3px 0;font-size:.72rem;color:#52606d}
+  .bar{height:13px;background:#7b8794;border-radius:2px}
+  .stack{display:flex;height:13px;border-radius:2px;overflow:hidden}
+  .stack span{display:block;height:100%}
+  .map{height:210px;background:repeating-linear-gradient(45deg,#f0f2f5,#f0f2f5 10px,#e6e9ed 10px,#e6e9ed 20px);border:1.5px dashed #9aa5b1;border-radius:4px;position:relative;display:flex;align-items:center;justify-content:center;color:#7b8794;font-size:.8rem;text-align:center}
+  .dot{position:absolute;width:12px;height:12px;border-radius:50%;background:rgba(62,76,89,.5)}
+  .wf-note{text-align:center;font-size:.78rem;color:#52606d;margin-top:10px}
+  @media (max-width:760px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
+</style>
 </head>
 <body>
-  <main class="explanation-page" id="main-content">
-    <h1>Task 3 explanation</h1>
-    <div id="explanation-text">
-      <p>Replace this text with your 200–300 word explanation.</p>
+
+<header>
+  <div class="wrap">
+    <h1>Traffic Accidents in Barcelona</h1>
+    <p><b>Task 1 · Part 4</b> — Selection of charts, visual encoding, Gestalt principles and low-fi dashboard draft</p>
+    <p>Presentation and Visualization</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ INTRO ============ -->
+<section>
+  <h2>Dataset basis and dashboard goal</h2>
+  <div class="note">
+    <b>Dataset basis.</b> This proposal uses the field dictionary in <code>campos_dataset_accidentes.xlsx</code>. The workbook describes the available fields but does not contain the actual accident rows, so the charts below are <b>design proposals</b>; no counts, trends, rankings or hotspots are claimed as observed results.
+  </div>
+  <h3>Dashboard goal</h3>
+  <p>Explore <b>when</b> and <b>where</b> recorded traffic accidents occur in Barcelona, and describe their recorded outcomes. The dashboard is <b>descriptive</b>: accident counts alone do not establish the probability of an accident, causal explanations, or how people perceive risk.</p>
+  <h3>Proposed questions the dashboard should answer</h3>
+  <ul>
+    <li>When are recorded accidents most frequent by day of week and hour?</li>
+    <li>How are recorded accidents distributed across Barcelona districts?</li>
+    <li>How do recorded casualty outcomes (fatalities, serious injuries, minor injuries and no victims) vary by district or time?</li>
+    <li>Where are accident records geographically concentrated, where valid coordinates are available?</li>
+  </ul>
+</section>
+
+<!-- ============ 1. CHARTS ============ -->
+<section>
+  <h2>1. Charts and visual encoding</h2>
+
+  <h3>Chart 1 — Heatmap: accidents by weekday and hour</h3>
+  <p class="goal">Goal. Identify temporal concentrations in recorded accidents and support comparisons between weekdays and hours.</p>
+  <p><b>Aggregation and selection.</b> Count distinct <code>numero_expedient</code> records for each combination of <code>descripcio_dia_setmana</code> and <code>hora_dia</code>. Use hour as whole-number bins from 0–23 and order weekdays Monday–Sunday. Exclude or separately flag missing/invalid dates or hours; check for duplicate case IDs before counting. A count measures recorded incidents, not risk per trip or hour of exposure.</p>
+  <table>
+    <tr><th>Field</th><th>Encoding</th><th>Function</th><th>Perception / theory relation</th><th>Legend</th></tr>
+    <tr><td><code>descripcio_dia_setmana</code></td><td>Vertical position (rows)</td><td>Categorical axis; fixed weekday order</td><td>Position supports accurate categorical comparison; consistent order aids scanning.</td><td>Weekday labels</td></tr>
+    <tr><td><code>hora_dia</code></td><td>Horizontal position (columns)</td><td>Ordered temporal axis, 0–23</td><td>Spatial order makes temporal progression easy to follow.</td><td>Hour labels</td></tr>
+    <tr><td><code>numero_expedient</code> (count)</td><td>Sequential light-to-dark single-hue colour</td><td>Magnitude: incidents per cell</td><td>Luminance difference makes high/low density preattentively visible; avoid rainbow palettes.</td><td>Colour scale: fewer → more records</td></tr>
+  </table>
+
+  <h3>Chart 2 — Horizontal bar chart: recorded accidents by district</h3>
+  <p class="goal">Goal. Compare the number of recorded accident cases across the 10 districts and identify which districts have the highest counts in the selected period.</p>
+  <p><b>Aggregation and selection.</b> Count distinct <code>numero_expedient</code> by <code>nom_districte</code>; sort bars descending. Treat “Desconegut” or invalid district codes (the dictionary notes possible 0/−1 codes) as unknown rather than a real district. Add a date-range filter. If district populations, traffic volume or exposure are not available, label the metric “recorded accidents” and do not interpret counts as comparative risk.</p>
+  <table>
+    <tr><th>Field</th><th>Encoding</th><th>Function</th><th>Perception / theory relation</th><th>Legend</th></tr>
+    <tr><td><code>nom_districte</code></td><td>Vertical position / category</td><td>One bar per district</td><td>Common baseline and aligned position support accurate comparison.</td><td>District names</td></tr>
+    <tr><td><code>numero_expedient</code> (count)</td><td>Bar length on a zero-based quantitative axis</td><td>Magnitude: distinct records</td><td>Length is a precise visual channel; descending sort reveals rank.</td><td>Axis: number of records</td></tr>
+  </table>
+
+  <h3>Chart 3 — Stacked bar chart: recorded severity by district</h3>
+  <p class="goal">Goal. Compare the composition of recorded outcomes across districts, not just total accident counts.</p>
+  <p><b>Aggregation and selection.</b> Count distinct accident records by <code>nom_districte</code> and derived <code>gravedad</code> (documented values include Mortal, Greu, Lleu and Sense víctimes). Verify the derivation and mapping of severity against the raw casualty fields before publishing. Use absolute counts to show workload; optionally use 100% stacked bars to compare composition, clearly labeling percentages. Do not mix incident counts and person counts in the same measure.</p>
+  <table>
+    <tr><th>Field</th><th>Encoding</th><th>Function</th><th>Perception / theory relation</th><th>Legend</th></tr>
+    <tr><td><code>nom_districte</code></td><td>Horizontal position / one bar per district</td><td>Compare districts</td><td>Aligned bars and grouping make categories easy to compare.</td><td>District labels</td></tr>
+    <tr><td><code>gravedad</code></td><td>Consistent categorical colour</td><td>Partition each bar by severity</td><td>Similarity groups the same outcome across districts; colours must remain consistent.</td><td>Severity categories</td></tr>
+    <tr><td><code>numero_expedient</code> (count)</td><td>Segment length</td><td>Count records in each severity class</td><td>Length enables quantitative comparison; baseline should start at zero.</td><td>Axis: number of records</td></tr>
+  </table>
+
+  <h3>Chart 4 — Point / density map: geographic concentration of records</h3>
+  <p class="goal">Goal. Show where accident records are geographically concentrated, where valid coordinates are available.</p>
+  <p><b>Aggregation and selection.</b> Plot one mark per distinct <code>numero_expedient</code> using the latitude/longitude (or projected X/Y) coordinate fields listed in the dictionary. Exclude records with missing or invalid coordinates (e.g. 0 or placeholder values) and report how many were excluded. Because individual points overlap in dense areas, offer a density/hexbin view when zoomed out. The map shows <b>where records exist</b>, not where it is most dangerous; without exposure data (traffic volume, population) no risk claim should be made.</p>
+  <table>
+    <tr><th>Field</th><th>Encoding</th><th>Function</th><th>Perception / theory relation</th><th>Legend</th></tr>
+    <tr><td>Coordinate fields (latitude / longitude)</td><td>2D position on a base map</td><td>Locate each record in space</td><td>Position is the most accurate channel; the map preserves real spatial relationships.</td><td>Base map, scale bar</td></tr>
+    <tr><td>Record density (count per area)</td><td>Single-hue sequential colour / transparency</td><td>Reveal concentrations where points overlap</td><td>Transparency and luminance make dense areas stand out without hiding sparse ones.</td><td>Colour scale: fewer → more records</td></tr>
+    <tr><td><code>nom_districte</code> (optional)</td><td>District boundary outline</td><td>Link the map with Charts 2 and 3</td><td>Common region: outlines group points by district.</td><td>District names on hover</td></tr>
+  </table>
+
+  <h3>Use of colour in the dashboard</h3>
+  <ul>
+    <li><b>Sequential single-hue blue scale</b> (light → dark) for quantitative magnitude: heatmap cells (Chart 1) and map density (Chart 4). Luminance order is intuitive and colour-blind friendly; rainbow palettes are avoided.</li>
+    <li><b>One neutral colour</b> for simple counts in Chart 2 (bars): length already encodes the value, so extra colour would add noise.</li>
+    <li><b>Categorical palette with a fixed order</b> for severity in Chart 3, reused for every severity reference in the dashboard (legend, tooltips, KPIs). Proposed: Mortal = dark, Greu = strong, Lleu = medium, Sense víctimes = light/grey, so the order of seriousness also follows luminance.</li>
+    <li><b>Grey</b> for “unknown / excluded” data, so missing values are not confused with real categories.</li>
+    <li>Colour is never the only channel: positions, labels and order carry the same information (accessibility). Background stays white/light grey to keep contrast.</li>
+  </ul>
+  <div class="swatches">
+    <div class="sw"><i style="background:#e8f0f8"></i>Sequential – low</div>
+    <div class="sw"><i style="background:#8db3d9"></i>Sequential – mid</div>
+    <div class="sw"><i style="background:#1f4e79"></i>Sequential – high</div>
+    <div class="sw"><i style="background:#3b0f1f"></i>Mortal</div>
+    <div class="sw"><i style="background:#b23a48"></i>Greu</div>
+    <div class="sw"><i style="background:#e6a15c"></i>Lleu</div>
+    <div class="sw"><i style="background:#c5ccd3"></i>Sense víctimes</div>
+    <div class="sw"><i style="background:#9aa5b1"></i>Unknown / excluded</div>
+  </div>
+</section>
+
+<!-- ============ 2. GESTALT ============ -->
+<section>
+  <h2>2. Layout design and Gestalt laws</h2>
+  <table>
+    <tr><th>Gestalt principle</th><th>How is it applied in the dashboard?</th><th>Why?</th></tr>
+    <tr><td><b>Proximity</b></td><td>Filters are grouped together in the header; each chart sits next to its own title, legend and notes; KPI cards are placed in one row.</td><td>Elements that are close are perceived as related, so users know which legend and which controls belong to which chart.</td></tr>
+    <tr><td><b>Similarity</b></td><td>The same severity colours are used in Chart 3, the KPI cards and tooltips; all panels share typography, title style and card shape.</td><td>Same look = same meaning, which reduces learning effort and makes cross-chart comparison easier.</td></tr>
+    <tr><td><b>Common region (enclosure)</b></td><td>Every chart is placed inside a bordered card/panel; district outlines on the map enclose points.</td><td>Boundaries separate independent views and make groups obvious without extra labels.</td></tr>
+    <tr><td><b>Continuity</b></td><td>Charts are aligned on a grid with common left edges; bars share a baseline and heatmap rows/columns follow straight lines.</td><td>Aligned elements guide the eye along a natural reading path (left → right, top → bottom).</td></tr>
+    <tr><td><b>Closure</b></td><td>Axis lines are minimal; the viewer completes the grid of the heatmap and bar baselines from light gridlines.</td><td>Less “ink” reduces clutter while the structure is still perceived as complete.</td></tr>
+    <tr><td><b>Figure / ground</b></td><td>Light grey page background with white chart cards; dark cells and bars stand out against a light ground; the map base layer is muted.</td><td>Highlights the data (figure) and keeps context in the background.</td></tr>
+    <tr><td><b>Connectedness / common fate (interaction)</b></td><td>Selecting a district in Chart 2 or on the map highlights it in all other charts (linked brushing).</td><td>Elements that change together are perceived as linked, supporting exploration across when / where / severity.</td></tr>
+  </table>
+  <p><b>Layout logic.</b> Top: title + filters (date range, district, severity). Second row: KPI cards. Main area (reading order): heatmap (<i>when</i>) → district bar chart (<i>where, by district</i>) → severity stacked bars (<i>outcomes</i>) → map (<i>where, geographic</i>). The most general view comes first and details follow (overview first, details on demand).</p>
+</section>
+
+<!-- ============ 3. LOW-FI ============ -->
+<section>
+  <h2>3. First draft of the dashboard (low-fi wireframe)</h2>
+  <div class="note">Sketch only: shapes and shades are <b>placeholders to show layout and encoding</b>. They do not represent real data, results or rankings.</div>
+  <br>
+
+  <div class="wf">
+    <div class="wf-title">
+      <b>Traffic Accidents in Barcelona — recorded accidents</b>
+      <div class="filters">
+        <span class="filter">📅 Date range ▾</span>
+        <span class="filter">District ▾</span>
+        <span class="filter">Severity ▾</span>
+      </div>
     </div>
-  </main>
+
+    <div class="kpis">
+      <div class="kpi"><strong>—</strong>Recorded accidents</div>
+      <div class="kpi"><strong>—</strong>Records with fatalities</div>
+      <div class="kpi"><strong>—</strong>Records with serious injuries</div>
+      <div class="kpi"><strong>—</strong>Excluded (missing / invalid)</div>
+    </div>
+
+    <div class="grid">
+      <!-- Chart 1 -->
+      <div class="panel">
+        <h4>1 · Recorded accidents by weekday and hour</h4>
+        <small>Heatmap · rows = weekday (Mon–Sun) · columns = hour 0–23</small>
+        <div class="heat" id="heat"></div>
+        <div class="legend-row">fewer <span class="legend-bar"></span> more records</div>
+      </div>
+
+      <!-- Chart 2 -->
+      <div class="panel">
+        <h4>2 · Recorded accidents by district</h4>
+        <small>Horizontal bars · sorted descending · zero baseline</small>
+        <div class="bars" id="bars2"></div>
+        <div class="legend-row">Axis: number of records · “Unknown” shown separately</div>
+      </div>
+
+      <!-- Chart 3 -->
+      <div class="panel">
+        <h4>3 · Recorded severity by district</h4>
+        <small>Stacked bars · absolute counts (toggle 100 %)</small>
+        <div class="bars" id="bars3"></div>
+        <div class="legend-row">
+          <span style="display:inline-block;width:10px;height:10px;background:#3b0f1f"></span> Mortal &nbsp;
+          <span style="display:inline-block;width:10px;height:10px;background:#b23a48"></span> Greu &nbsp;
+          <span style="display:inline-block;width:10px;height:10px;background:#e6a15c"></span> Lleu &nbsp;
+          <span style="display:inline-block;width:10px;height:10px;background:#c5ccd3"></span> Sense víctimes
+        </div>
+      </div>
+
+      <!-- Chart 4 -->
+      <div class="panel">
+        <h4>4 · Geographic concentration of records</h4>
+        <small>Point / density map · valid coordinates only</small>
+        <div class="map">
+          <span class="dot" style="left:22%;top:30%"></span>
+          <span class="dot" style="left:30%;top:48%;width:16px;height:16px"></span>
+          <span class="dot" style="left:48%;top:38%;width:20px;height:20px"></span>
+          <span class="dot" style="left:55%;top:60%"></span>
+          <span class="dot" style="left:70%;top:35%;width:15px;height:15px"></span>
+          <span class="dot" style="left:78%;top:62%"></span>
+          [ base map + district outlines ]
+        </div>
+        <div class="legend-row">fewer <span class="legend-bar"></span> more records · hover = district + count</div>
+      </div>
+    </div>
+    <div class="wf-note">Interaction: selecting a district or a time cell filters / highlights the other three charts (linked views).</div>
+  </div>
+</section>
+
+<!-- ============ 4. QUESTIONS ============ -->
+<section>
+  <h2>4. How the dashboard answers the questions</h2>
+  <table>
+    <tr><th>Question</th><th>How this question will be answered with the dashboard?</th></tr>
+    <tr>
+      <td>When are recorded accidents most frequent by day of week and hour?</td>
+      <td><b>Chart 1 (heatmap).</b> Darker cells show weekday–hour combinations with more recorded accidents. Rows (weekday) and columns (hour) allow reading both patterns at once. The date-range filter lets the user check whether the pattern holds across periods. Counts are labelled as recorded incidents, not risk.</td>
+    </tr>
+    <tr>
+      <td>How are recorded accidents distributed across Barcelona districts?</td>
+      <td><b>Chart 2 (sorted horizontal bars)</b> compares the number of distinct records per district on a common baseline, and the ranking is visible from the sort order. <b>Chart 4 (map)</b> complements it with the spatial distribution inside and across districts.</td>
+    </tr>
+    <tr>
+      <td>How do recorded casualty outcomes vary by district or time?</td>
+      <td><b>Chart 3 (stacked bars)</b> shows the composition by severity per district (absolute or 100 %). Using the severity filter and selecting cells in Chart 1 re-computes Chart 3 for a given time slot, so outcomes can be explored by district and by time.</td>
+    </tr>
+    <tr>
+      <td>Where are accident records geographically concentrated?</td>
+      <td><b>Chart 4 (point/density map)</b> shows clusters of records using valid coordinates; excluded records are reported in the KPI card. Linked selection with Chart 2 connects hotspots to their district. Concentration of records is not interpreted as higher risk.</td>
+    </tr>
+  </table>
+  <div class="note"><b>Limitations.</b> The dashboard is descriptive. It relies on recorded accidents, requires checking duplicates in <code>numero_expedient</code>, unknown districts (0/−1 / “Desconegut”), the derivation of <code>gravedad</code> and invalid coordinates, and does not include exposure data, so it cannot support claims about probability, causes or perceived risk.</div>
+</section>
+
+</main>
+
+<script>
+  // Placeholder heatmap shading (layout sketch only — NOT real data)
+  (function(){
+    var days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    var shades=['#e8edf2','#cfd8e1','#b4c1ce','#98a9ba','#7c91a6'];
+    var h=document.getElementById('heat'), html='<div></div>';
+    for(var i=0;i<24;i++){html+='<div class="hlab">'+(i%3===0?i:'')+'</div>';}
+    for(var d=0;d<7;d++){
+      html+='<div class="lab">'+days[d]+'</div>';
+      for(var i=0;i<24;i++){
+        var s=((i*3+d*5)%5);
+        html+='<div class="c" style="background:'+shades[s]+'"></div>';
+      }
+    }
+    h.innerHTML=html;
+
+    // Placeholder bars chart 2 (sorted descending — shape only)
+    var b2='';
+    for(var k=1;k<=10;k++){b2+='<div class="row"><span>District '+k+'</span><div class="bar" style="width:'+(100-k*8)+'%"></div></div>';}
+    document.getElementById('bars2').innerHTML=b2;
+
+    // Placeholder stacked bars chart 3
+    var cols=['#3b0f1f','#b23a48','#e6a15c','#c5ccd3'], b3='';
+    var widths=[[2,6,22,70],[2,5,25,68],[3,7,20,70],[2,6,24,68],[2,5,23,70],[3,6,21,70]];
+    for(var k=0;k<6;k++){
+      b3+='<div class="row"><span>District '+(k+1)+'</span><div class="stack">';
+      for(var j=0;j<4;j++){b3+='<span style="width:'+widths[k][j]+'%;background:'+cols[j]+'"></span>';}
+      b3+='</div></div>';
+    }
+    document.getElementById('bars3').innerHTML=b3;
+  })();
+</script>
 </body>
 </html>
