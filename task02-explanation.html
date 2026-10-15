@@ -10,7 +10,92 @@
   <main class="explanation-page" id="main-content">
     <h1>Task 2 explanation</h1>
     <div id="explanation-text">
-      <p>Replace this text with your 200–300 word explanation.</p>
+      <p>Task 1. Part 2: The audience
+The dashboard is designed for the rural population of the United States, represented by a typical rural voter. These are adults who vote in federal elections and live in farming communities. Their work centers on farming, animals and food, so they know their local area very well but have little experience with data analysis. Their reason for opening the dashboard is a decision: whom to vote for.
+Expertise in charts: Not experts. They have basic knowledge of statistics and visualization and no university degree. They read familiar charts (bars, lines, simple maps) with ease, but technical terms such as "per capita rate", "correlation" or "confidence interval" would lose them.
+Platform: Desktop computer only, with the dashboard shown as a presentation in Power BI. The large screen gives room for a state selector and several linked charts.
+Frequency of use: Once every two years, during the election period before the midterm elections. Most visits are therefore from infrequent or first-time users, so the dashboard has to be understandable without training and must give its main message on the first screen.
+What this means for the design
+Use familiar chart types and plain-language titles phrased as questions.
+Explain any statistical term in one short sentence next to the chart.
+Start with a single state selector so the user sees his own state first.
+Keep the layout simple and stable, since users will not remember how it works from one election to the next.
+Use a neutral color scheme, with red/blue only in the party-control chart, so the dashboard feels fair rather than partisan.
+2. Persona
+The audience profile is summarized in the following table.
+Feature
+Audience profile
+Domain knowledge
+Farmer, animals and food (represents the rural population of the US)
+Statistics and visualization knowledge
+Basic knowledge, no university degree
+Relevant demographic features
+Rural male of the US
+Platform
+Desktop presentation via Power BI
+Pain points / Desires
+Know who to vote for
+What do they need to know
+Analysis of safety around his state
+Frequency of use
+Once every 2 years (election period)
+
+
+Persona: Dale, 52, rural Midwest farmer. Dale raises livestock and grows crops, has only basic comfort with charts and statistics, views the dashboard on a desktop once every two years before the midterm elections, and wants to know how safe his state is and which party's approach to gun policy and public safety lines up with what he cares about. He votes in every national election and takes the decision seriously, but he distrusts headlines and prefers to see the facts for himself.
+Dale's goal: to decide which party to vote for by understanding how safe his state is from mass shootings, whether the situation is improving or getting worse, and which party's approach to public safety and gun policy is associated with better results.
+3. Scenario of use
+It is October of an election year. Dale wonders whether mass shootings are a real risk where he lives, or whether the news makes it seem worse than it is. He opens the dashboard on his desktop computer, selects his state, and sees how often incidents happen, whether the trend is rising or falling, and whether rural areas like his are affected. He can then compare his state's results with the gun laws and the party in power over time. He walks away with facts rather than headlines, and can decide which candidates' safety policies to support.
+4. Goals of the dashboard
+Based on the dataset (mass shooting incidents with date, state, county, location type and number of victims, combined with state gun-law scores, population figures and the party governing each state) and the audience described above, the dashboard has four goals:
+Inform: give a clear, accurate picture of mass shooting incidents in the user's own state.
+Put it in context: compare the state with the national average, neighboring states and different community types (urban, suburban, rural), so the user can judge the real level of risk for people like him.
+Connect to policy: show how outcomes relate to gun-law strictness and to the party governing the state, so the user can reason about which approach fits his priorities.
+Stay fair and trustworthy: present the data neutrally, state which definition of "mass shooting" is used, and warn that a link between party and outcomes does not prove cause.
+5. Questions the dashboard must answer
+The questions are written from the user's perspective, and each is linked to the function of the chart that answers it.
+No.
+Function
+Question
+Chart
+Fit with the user's goal
+01
+COMPARE
+How does my state's mass shooting rate per 100,000 people compare with the national average and neighboring states?
+Clustered bar chart (my state vs. national average vs. neighbors)
+Gives Dale an immediate, plain answer to "how safe is my state?" with a familiar benchmark.
+02
+TRENDS
+Are mass shootings in my state going up or down over the last 10-20 years?
+Line chart with election years marked and party control shaded in the background
+Shows whether the situation is improving or worsening, which is the core of his voting decision.
+03
+RELATIONSHIPS
+Do states with stricter gun laws have fewer mass shooting victims than states with looser laws?
+Scatter plot (gun-law strictness score vs. incidents per 100k, my state highlighted)
+Connects safety outcomes to policy, so he can judge which party's approach is associated with better results.
+04
+DISTRIBUTION
+Do mass shootings happen mostly in cities or in rural and small-town areas like mine?
+Column chart by community type (urban, suburban, rural)
+Speaks directly to his rural identity and tests whether the problem touches people like him.
+05
+GEOGRAPHY
+Where in my state (county or region) have incidents happened?
+Filled map or bubble map of the state by county
+Makes the data local and concrete. He can find his own county.
+06
+COMPOSITION
+What types of incidents and locations are involved (schools, workplaces, public places, homes)?
+Donut or stacked bar chart by location type
+Shows what kinds of incidents are most common, so he can judge which policies would matter most.
+07
+RANKING
+Which party governed my state during the highest and lowest periods of incidents, and how do states rank?
+Horizontal ranked bar chart colored by governing party (red/blue)
+Links outcomes to party control for a direct, if cautious, comparison to support his vote.
+
+
+</p>
     </div>
   </main>
 </body>
